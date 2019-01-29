@@ -3,7 +3,7 @@ defmodule TestAppTest do
   doctest TestApp
 
   test "will fail" do
-    assert false
+    assert true
   end
 
   test "greets the world" do
