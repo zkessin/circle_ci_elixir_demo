@@ -1,0 +1,28 @@
+
+general:
+  branches:
+    ignore:
+      - gh-pages # list of branches to ignore
+
+dependencies:
+  cache_directories:
+    - ~/.cache/rebar3
+    - ~/nvm/
+
+
+  pre:
+    - chmod 755 rebar3
+    - sudo cp rebar3  /usr/bin
+    - wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
+    - sudo dpkg -i erlang-solutions_1.0_all.deb
+    - sudo apt-get install software-properties-common
+    - sudo add-apt-repository -y ppa:avsm/ppa
+    - sudo apt-get update
+    - sudo apt-get install erlang erlang-base-hipe elixir
+
+
+test:
+  override:
+    - mix do deps.get, deps.compile
+    - mix test
+    - mix dialyzer
